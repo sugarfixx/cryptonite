@@ -1,5 +1,8 @@
 # Cryptonite
 
+This package is for those who do not need the highest security. It is not intended to be used with information that is likely to be attacked. But if you need to hide data sent between services in a system this might do the trick.
+
+
 ## Usage
 
 ### Encrypt
@@ -26,7 +29,7 @@ $decrypted = (new Cryptonite())->decrypt($encrypted, $publicKey);
 $decrypted = (new Cryptonite("My Cupher Algo", "My Secret"))->decrypt($encrypted, $publicKey);
 ````
 
-### Installation
+## Installation
 
 
 To require service into existing project, add this to composer.json
