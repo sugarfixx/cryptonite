@@ -4,7 +4,7 @@ namespace Cryptonite;
 
 class Cryptonite
 {
-    
+
     private $cipherAlgo;
 
     private $secretKey;

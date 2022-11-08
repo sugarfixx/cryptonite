@@ -1,0 +1,23 @@
+{
+  "name": "sugarfixx/cryptonite",
+  "description": "Simple encryption for semi-important data",
+  "type": "library",
+  "require-dev": {
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ingar Torsrud",
+      "email": "ingar.torsrud@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.4.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "Cryptonite": "src/"
+    }
+  }
+}
