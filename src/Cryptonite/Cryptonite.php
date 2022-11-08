@@ -35,7 +35,7 @@ class Cryptonite
         return openssl_decrypt(base64_decode($encrypted), $this->cipherAlgo, $key, 0, $ivalue);
     }
 
-    public function generatePublicKey($length = 10)
+    public function generatePublicKey($length = 10) : void
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
