@@ -5,18 +5,32 @@ namespace Cryptonite;
 class Cryptonite
 {
 
+    /**
+     * sets what algorithm to use via constructor
+     * if not set AES-256-CBC is used as default
+     * see https://www.php.net/manual/en/function.openssl-get-cipher-methods.php
+     * @var mixed|string
+     */
     private $cipherAlgo;
 
+    /**
+     * sets secretKey from constructor
+     * if not set kryptonite is used as default
+     * @var mixed|string
+     */
     private $secretKey;
 
+    /**
+     * is set from the constructor
+     * @var string
+     */
     public $publicKey;
 
-    public function __construct($cipherAlgo = null, $secretKey = null)
+    public function __construct($cipherAlgo = "", $secretKey = "")
     {
-        $this->cipherAlgo = $cipherAlgo ?? "AES-256-CBC";
-        $this->secretKey = $secretKey ?? "kryptonite";
+        $this->cipherAlgo = !empty($cipherAlgo) ? $cipherAlgo : "AES-256-CBC";
+        $this->secretKey = !empty($secretKey) ? $secretKey : "kryptonite";
         $this->generatePublicKey();
-
     }
 
     public function encrypt($string, $publicKey)
