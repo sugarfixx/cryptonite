@@ -9,14 +9,14 @@ class Cryptonite
      * sets what algorithm to use via constructor
      * if not set AES-256-CBC is used as default
      * see https://www.php.net/manual/en/function.openssl-get-cipher-methods.php
-     * @var mixed|string
+     * @var string
      */
     private $cipherAlgo;
 
     /**
      * sets secretKey from constructor
      * if not set kryptonite is used as default
-     * @var mixed|string
+     * @var string
      */
     private $secretKey;
 
@@ -26,22 +26,36 @@ class Cryptonite
      */
     public $publicKey;
 
-    public function __construct($cipherAlgo = "", $secretKey = "")
+    /**
+     * @param string $cipherAlgo
+     * @param string $secretKey
+     */
+    public function __construct(string $cipherAlgo = "", string $secretKey = "")
     {
-        $this->cipherAlgo = !empty($cipherAlgo) ? $cipherAlgo : "AES-256-CBC";
-        $this->secretKey = !empty($secretKey) ? $secretKey : "kryptonite";
+        $this->setCipherAlgo($cipherAlgo);
+        $this->setSecretKey($secretKey);
         $this->generatePublicKey();
     }
 
+    /**
+     * @param $string
+     * @param $publicKey
+     * @return string // encrypted value
+     */
     public function encrypt($string, $publicKey)
     {
         $key = hash('sha256', $publicKey);
         $ivalue = substr(hash('sha256', $this->secretKey), 0, 16); // sha256 is hash_hmac_algo
         $result = openssl_encrypt($string, $this->cipherAlgo, $key, 0, $ivalue);
-        return base64_encode($result);  // output is an encrypted value
+        return base64_encode($result);  // output is an
 
     }
 
+    /**
+     * @param $encrypted
+     * @param $publicKey
+     * @return false|string
+     */
     public function decrypt($encrypted, $publicKey)
     {
         $key    = hash('sha256', $publicKey);
@@ -49,6 +63,10 @@ class Cryptonite
         return openssl_decrypt(base64_decode($encrypted), $this->cipherAlgo, $key, 0, $ivalue);
     }
 
+    /**
+     * @param $length
+     * @return void
+     */
     public function generatePublicKey($length = 10) : void
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -57,6 +75,30 @@ class Cryptonite
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        $this->publicKey = $randomString;
+        $this->setPublicKey($randomString);
+    }
+
+    /**
+     * @param string $cipherAlgo
+     */
+    public function setCipherAlgo(string $cipherAlgo): void
+    {
+        $this->cipherAlgo = !empty($cipherAlgo) ? $cipherAlgo : "AES-256-CBC";
+    }
+
+    /**
+     * @param string $secretKey
+     */
+    public function setSecretKey(string $secretKey): void
+    {
+        $this->secretKey = !empty($secretKey) ? $secretKey : "kryptonite":
+    }
+
+    /**
+     * @param string $publicKey
+     */
+    public function setPublicKey(string $publicKey): void
+    {
+        $this->publicKey = $publicKey;
     }
 }
