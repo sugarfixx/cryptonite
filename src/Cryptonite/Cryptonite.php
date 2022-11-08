@@ -91,7 +91,7 @@ class Cryptonite
      */
     public function setSecretKey(string $secretKey): void
     {
-        $this->secretKey = !empty($secretKey) ? $secretKey : "kryptonite":
+        $this->secretKey = !empty($secretKey) ? $secretKey : "kryptonite";
     }
 
     /**
