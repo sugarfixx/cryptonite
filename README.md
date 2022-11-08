@@ -42,5 +42,5 @@ To require service into existing project, add this to composer.json
 ````
 Run
 ```angular2html
-composer require sugarfixx/jwt-tamperer
+composer require sugarfixx/cryptonite
 ```
