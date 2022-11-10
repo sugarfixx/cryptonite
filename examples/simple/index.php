@@ -1,8 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
-use
-    Cryptonite\Cryptonite;
+use Cryptonite\Cryptonite;
 
 // sample string to be encrypted
 $string = "sample string";
