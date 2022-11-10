@@ -1,0 +1,11 @@
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:sugarfixx/cryptonite.git"
+    }
+  ],
+  "require": {
+    "sugarfixx/cryptonite": "dev-main"
+  }
+}
