@@ -47,3 +47,13 @@ Run
 ```angular2html
 composer require sugarfixx/cryptonite:dev-main
 ```
+
+## To run the examples
+
+
+You need to clone the repo and install the dependencies before it can be served from you favourite local host
+````
+git clone <this-reepo>
+cd example/full
+composer install
+````
